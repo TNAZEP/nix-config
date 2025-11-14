@@ -46,7 +46,7 @@
         repeat_delay = 250;
         repeat_rate = 35;
 
-        touchpad {
+        touchpad = {
             natural_scroll = yes;
             disable_while_typing = true;
             clickfinger_behavior = true;
