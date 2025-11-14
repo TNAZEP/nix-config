@@ -36,7 +36,7 @@
     profiles = {
       ${username} = {
         id = 0;
-        name = "tux";
+        name = "tnazep";
         search = {
           force = true;
           default = "google";
@@ -60,10 +60,8 @@
 
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
-          facebook-container
           metamask
           darkreader
-          bitwarden
           wappalyzer
           clearurls
         ];
