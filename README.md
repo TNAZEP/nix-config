@@ -61,7 +61,7 @@ nix-shell -p disko neovim
 Partition your disk using disko. **This will wipe your drive.** Replace `DISK_PATH` with your actual disk path (e.g., `/dev/vda` or `/dev/nvme0n1`):
 
 ```bash
-disko --mode disko ./hosts/midgar/disko.nix --arg device '"DISK_PATH"'
+disko --mode disko ./hosts/midgar/disko.nix --argstr device '"DISK_PATH"'
 ```
 
 #### 4. Configure your disk
