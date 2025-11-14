@@ -41,7 +41,7 @@
 
       #-- Input: Keyboard, Mouse, Touchpad
       input = {
-        kb_layout = se;
+        kb_layout = "se";
         numlock_by_default = true;
         repeat_delay = 250;
         repeat_rate = 35;
