@@ -1,5 +1,5 @@
 {
-  description = "tux's Nix Flake";
+  description = "TNAZEPs Nix Flake";
 
   outputs = {
     self,
@@ -14,8 +14,8 @@
       "x86_64-linux"
       "aarch64-linux"
     ];
-    username = "tux";
-    email = "t@tux.rs";
+    username = "tnazep";
+    email = "jacob@ennaimi.com";
 
     mkNixOSConfig = host: {
       specialArgs = {inherit inputs outputs username email;};
@@ -61,6 +61,7 @@
     # NixOS configuration entrypoint
     # 'nixos-rebuild switch --flake .#your-hostname'
     nixosConfigurations = {
+      strongzero = nixosSystem (mkNixOSConfig "midgar");
       arcturus = nixosSystem (mkNixOSConfig "arcturus");
       canopus = nixosSystem (mkNixOSConfig "canopus");
       alpha = nixosSystem (mkNixOSConfig "alpha");
@@ -81,6 +82,7 @@
 
     deploy = {
       nodes = {
+        strongzero = mkNixOSNode "midgar";
         arcturus = mkNixOSNode "arcturus";
         canopus = mkNixOSNode "canopus";
         alpha = mkNixOSNode "alpha";
