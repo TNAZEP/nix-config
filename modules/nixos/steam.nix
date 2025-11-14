@@ -4,5 +4,4 @@
   };
 
   hardware.graphics.enable32Bit = true;
-  localNetworkGameTransfers.openFirewall = true;
 }
