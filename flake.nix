@@ -61,7 +61,7 @@
     # NixOS configuration entrypoint
     # 'nixos-rebuild switch --flake .#your-hostname'
     nixosConfigurations = {
-      strongzero = nixosSystem (mkNixOSConfig "midgar");
+      midgar = nixosSystem (mkNixOSConfig "midgar");
       arcturus = nixosSystem (mkNixOSConfig "arcturus");
       canopus = nixosSystem (mkNixOSConfig "canopus");
       alpha = nixosSystem (mkNixOSConfig "alpha");
@@ -82,7 +82,7 @@
 
     deploy = {
       nodes = {
-        strongzero = mkNixOSNode "midgar";
+        midgar = mkNixOSNode "midgar";
         arcturus = mkNixOSNode "arcturus";
         canopus = mkNixOSNode "canopus";
         alpha = mkNixOSNode "alpha";
