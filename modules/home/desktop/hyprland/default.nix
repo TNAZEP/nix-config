@@ -31,28 +31,31 @@
       terminal = "wezterm";
       floating_terminal = "wezterm start --class wezterm-floating";
       editor = "wezterm -e nvim";
-      browser = "brave";
+      browser = "firefox";
       spotify = "wezterm start --class wezterm-floating -e spotify_player";
       filemanager = "wezterm start --class wezterm-floating -e superfile";
     in {
       #-- Output
       # See https://wiki.hyprland.org/Configuring/Monitors
-      monitor = "eDP-1,2560x1440@90,0x0,1";
+      monitor = "DP-1,2560x1440@240,0x0,1";
 
       #-- Input: Keyboard, Mouse, Touchpad
       input = {
-        sensitivity = -0.7;
-        scroll_method = "2 fg";
-        touchpad = {
-          natural_scroll = true;
-          clickfinger_behavior = false;
+        kb_layout = se;
+        numlock_by_default = true;
+        repeat_delay = 250;
+        repeat_rate = 35;
+
+        touchpad {
+            natural_scroll = yes;
+            disable_while_typing = true;
+            clickfinger_behavior = true;
+            scroll_factor = 0.5;
         };
+        special_fallthrough = true;
+        follow_mouse = 1;
       };
 
-      device = {
-        name = "asue1209:00-04f3:319f-touchpad";
-        sensitivity = 0;
-      };
 
       #-- General
       # See https://wiki.hyprland.org/Configuring/Variables
@@ -259,13 +262,6 @@
         "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
       ];
 
-      workspace = [
-        "1, monitor:HDMI-A-1"
-        "2, monitor:HDMI-A-1"
-        "3, monitor:HDMI-A-1"
-        "4, monitor:eDP-1"
-        "5, monitor:eDP-1"
-      ];
 
       binde = [
         # resize active
