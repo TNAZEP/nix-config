@@ -201,9 +201,9 @@
       bind = [
         # apps
         "SUPER, Return, exec, ${terminal}"
-        "SUPER, F, exec, ${filemanager}"
-        "SUPER, E, exec, ${editor}"
-        "SUPER, B, exec, ${browser}"
+        "SUPER, E, exec, ${filemanager}"
+        "SUPER, C, exec, ${editor}"
+        "SUPER, F, exec, ${browser}"
         "SUPER, G, exec, GalaxyBudsClient"
         "SUPER, D, exec, discord"
         "SUPER, S, exec, ${spotify}"
@@ -213,7 +213,7 @@
         "SUPER_SHIFT, S, exec, flameshot gui"
 
         # tpanel
-        "SUPER, A, exec, ags toggle launcher"
+        "SUPER, SPACE, exec, ags toggle launcher"
         "SUPER_SHIFT, B, exec, ags toggle bar"
         "SUPER_SHIFT, C, exec, ags toggle control-center"
         "SUPER_SHIFT, W, exec, ags toggle wallpaper-manager"
