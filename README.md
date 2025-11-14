@@ -46,7 +46,7 @@ Boot into the NixOS bootable USB before proceeding with the installation steps.
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/tuxdotrs/nix-config.git
+git clone https://github.com/TNAZEP/nix-config.git
 cd nix-config
 ```
 
@@ -68,7 +68,7 @@ nix-shell -p disko neovim
 Partition your disk using disko. **This will wipe your drive.** Replace `DISK_PATH` with your actual disk path (e.g., `/dev/vda` or `/dev/nvme0n1`):
 
 ```bash
-disko --mode disko ./hosts/canopus/disko.nix --arg device '"DISK_PATH"'
+disko --mode disko ./hosts/midgar/disko.nix --arg device '"DISK_PATH"'
 ```
 
 #### 4. Configure your disk
@@ -76,7 +76,7 @@ disko --mode disko ./hosts/canopus/disko.nix --arg device '"DISK_PATH"'
 Edit the configuration file:
 
 ```bash
-nvim ./hosts/canopus/default.nix
+nvim ./hosts/midgar/default.nix
 ```
 
 In the imports statement, replace:
@@ -102,13 +102,13 @@ nixos-generate-config --no-filesystems --root /mnt
 Copy the generated hardware configuration to the repository:
 
 ```bash
-cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/canopus/hardware.nix
+cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/midgar/hardware.nix
 ```
 
 #### 6. Install NixOS
 
 ```bash
-nixos-install --root /mnt --flake .#canopus
+nixos-install --root /mnt --flake .#midgar
 ```
 
 #### 7. Enter into the new system
@@ -121,7 +121,7 @@ nixos-enter --root /mnt
 
 ```bash
 mkdir -p /persist/home
-chown -R tux:users /persist/home
+chown -R tnazep:users /persist/home
 ```
 
 #### 9. Set passwords
@@ -135,7 +135,7 @@ passwd root
 Set the user password:
 
 ```bash
-passwd tux
+passwd tnazep
 ```
 
 #### 10. Reboot
@@ -202,7 +202,7 @@ Your NixOS system should now boot into a beautiful DE.
 
 ![2024-08-08_18-26](https://github.com/user-attachments/assets/6f12173b-2480-404e-b01a-599115a886c0)
 
-## Spent weeks on this system configuration 😢
+## Based on tuxdotrs who spent weeks on this system configuration 😢
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/97862450/265550523-2f66a8b6-4347-40af-89c6-12db3a61cc7c.jpeg" width="60%">
