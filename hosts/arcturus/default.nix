@@ -19,7 +19,7 @@
     ../../modules/nixos/selfhosted/headscale.nix
     ../../modules/nixos/selfhosted/vaultwarden.nix
     ../../modules/nixos/selfhosted/gitea.nix
-    ../../modules/nixos/selfhosted/plausible.nix
+    ../../modules/nixos/selfhosted/umami.nix
     ../../modules/nixos/selfhosted/monitoring/grafana.nix
     ../../modules/nixos/selfhosted/monitoring/loki.nix
     ../../modules/nixos/selfhosted/monitoring/promtail.nix
@@ -35,6 +35,18 @@
   ];
 
   tux.services.openssh.enable = true;
+  tux.containers.aiostreams = {
+    enable = true;
+    port = 4567;
+    environment = {
+      ADDON_ID = "aiostreams.tux.rs";
+      BASE_URL = "https://aiostreams.tux.rs";
+    };
+
+    environmentFiles = [
+      config.sops.secrets."aiostreams".path
+    ];
+  };
 
   sops.secrets = {
     borg_encryption_key = {
@@ -79,6 +91,14 @@
     };
 
     "cs2_secrets/CS2_PW" = {
+      sopsFile = ./secrets.yaml;
+    };
+
+    aiostreams = {
+      sopsFile = ./secrets.yaml;
+    };
+
+    umami = {
       sopsFile = ./secrets.yaml;
     };
   };
@@ -144,7 +164,13 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443 22 3333 8081];
+      allowedTCPPorts = [
+        80
+        443
+        22
+        3333
+        8081
+      ];
     };
   };
 
@@ -207,7 +233,9 @@
     ];
   };
 
-  users.users.${username} = {linger = true;};
+  users.users.${username} = {
+    linger = true;
+  };
   home-manager.users.${username} = {
     imports = [
       ./home.nix
