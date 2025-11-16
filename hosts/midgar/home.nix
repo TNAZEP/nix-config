@@ -117,7 +117,7 @@
       ".config/rustdesk"
       ".config/kdeconnect"
       ".config/1Password"
-      ".config/VScodium"
+      ".config/VSCodium"
       ".local/share/1Password"
       ".local/share/nvim"
       ".local/share/opencode"
