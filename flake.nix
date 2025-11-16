@@ -142,7 +142,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tpanel = {
-      url = "github:tuxdotrs/tpanel";
+      url = "github:TNAZEP/tpanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tfolio = {
