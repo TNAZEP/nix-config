@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.hyprpaper = {
     enable = true;
 
@@ -8,14 +9,14 @@
       splash_offset = 2.0;
 
       preload = [
-        "~/Wallpapers/new/sunset-pixel.png"
+        "~/Wallpapers/kiyomizu.jpg"
       ];
 
       wallpaper = [
-        ", ~/Wallpapers/new/sunset-pixel.png"
+        ", ~/Wallpapers/kiyomizu.jpg"
       ];
     };
   };
 
-  home.packages = with pkgs; [hyprpaper];
+  home.packages = with pkgs; [ hyprpaper ];
 }

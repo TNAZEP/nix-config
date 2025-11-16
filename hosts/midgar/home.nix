@@ -62,6 +62,15 @@
     };
   };
 
+  programs.ssh = {
+    enable = true;
+
+    # Use 1Password’s SSH agent for all hosts
+    matchBlocks."*" = {
+      identityAgent = "~/.1password/agent.sock";
+    };
+  };
+
   home.packages = with pkgs; [
     telegram-desktop
     anydesk
