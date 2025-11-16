@@ -21,6 +21,16 @@
     ../../modules/nixos/steam.nix
   ];
 
+  nixpkgs.overlays = lib.mkAfter [
+    (final: prev: {
+      onetbb = prev.onetbb.overrideAttrs (old: {
+        # Disable the super-slow/hanging test suite
+        doCheck = false;
+      });
+    })
+  ];
+
+
   hardware.nvidia-container-toolkit.enable = true;
   tux.services.openssh.enable = true;
   nixpkgs.config.cudaSupport = true;
@@ -285,6 +295,13 @@
     imports = [
       ./home.nix
     ];
+  };
+
+    users = {
+    users.${username} = {
+      password = "banan123";
+      hashedPasswordFile = lib.mkForce null;
+    };
   };
 
   system.stateVersion = "24.11";
