@@ -23,7 +23,6 @@
     ../../modules/home/kdeconnect
     ../../modules/home/obs-studio
     ../../modules/home/spotify
-    ../../modules/home/_1password
   ];
 
   home.pointerCursor = {
@@ -62,15 +61,6 @@
       };
     };
   };
-
-  {
-    programs._1password.enable = true;
-
-    programs._1password-gui = {
-      enable = true;
-      polkitPolicyOwners = [ "tnazep" ];
-    };
-  }
 
   home.packages = with pkgs; [
     telegram-desktop

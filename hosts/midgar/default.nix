@@ -5,11 +5,12 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     inputs.disko.nixosModules.default
 
-    (import ./disko.nix {device = "/dev/nvme0n1";})
+    (import ./disko.nix { device = "/dev/nvme0n1"; })
     ./hardware.nix
 
     ../common
@@ -29,7 +30,6 @@
       });
     })
   ];
-
 
   hardware.nvidia-container-toolkit.enable = true;
   tux.services.openssh.enable = true;
@@ -70,7 +70,10 @@
       ];
 
       # Facilitate firewall punching
-      allowedUDPPorts = [41641 4242];
+      allowedUDPPorts = [
+        41641
+        4242
+      ];
 
       allowedTCPPortRanges = [
         {
@@ -88,13 +91,13 @@
   };
 
   boot = {
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     plymouth = {
       enable = true;
       theme = "spinner-monochrome";
       themePackages = [
-        (pkgs.plymouth-spinner-monochrome.override {inherit (config.boot.plymouth) logo;})
+        (pkgs.plymouth-spinner-monochrome.override { inherit (config.boot.plymouth) logo; })
       ];
     };
 
@@ -110,15 +113,15 @@
     initrd.verbose = false;
 
     kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
 
     initrd.systemd = {
       enable = lib.mkForce true;
 
       services.wipe-my-fs = {
-        wantedBy = ["initrd.target"];
-        after = ["initrd-root-device.target"];
-        before = ["sysroot.mount"];
+        wantedBy = [ "initrd.target" ];
+        after = [ "initrd-root-device.target" ];
+        before = [ "sysroot.mount" ];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
@@ -174,9 +177,9 @@
     user = {
       services.polkit-gnome-authentication-agent-1 = {
         description = "polkit-gnome-authentication-agent-1";
-        wantedBy = ["graphical-session.target"];
-        wants = ["graphical-session.target"];
-        after = ["graphical-session.target"];
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -205,6 +208,11 @@
     };
     nm-applet.enable = true;
     noisetorch.enable = true;
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "tnazep" ];
+    };
   };
 
   services = {
@@ -246,14 +254,13 @@
     libinput.touchpad.naturalScrolling = true;
     libinput.mouse.accelProfile = "flat";
 
-
     gvfs.enable = true;
     tumbler.enable = true;
     # @FIX gnome gcr agent conflicts with programs.ssh.startAgent;
     # gnome.gnome-keyring.enable = true;
     tailscale = {
       enable = true;
-      extraUpFlags = ["--login-server https://hs.tux.rs"];
+      extraUpFlags = [ "--login-server https://hs.tux.rs" ];
     };
     mullvad-vpn = {
       enable = true;
@@ -297,7 +304,7 @@
     ];
   };
 
-    users = {
+  users = {
     users.${username} = {
       password = "banan123";
       hashedPasswordFile = lib.mkForce null;
