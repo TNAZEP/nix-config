@@ -7,13 +7,13 @@
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga503
     inputs.disko.nixosModules.default
 
     (import ./disko.nix {device = "/dev/nvme0n1";})
     ./hardware.nix
 
     ../common
+    ../../modules/nixos/nvidia.nix
     ../../modules/nixos/desktop
     ../../modules/nixos/desktop/awesome
     ../../modules/nixos/desktop/hyprland
@@ -150,8 +150,6 @@
   };
 
   hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
     graphics.enable32Bit = true;
   };
 
@@ -238,45 +236,6 @@
     libinput.touchpad.naturalScrolling = true;
     libinput.mouse.accelProfile = "flat";
 
-    # To use Auto-cpufreq we need to
-    # disable TLP because it's enabled by nixos-hardware
-    tlp.enable = false;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          platform_profile = "balanced";
-          governor = "powersave";
-          energy_performance_preference = "performance";
-          turbo = "never";
-          scaling_min_freq = 400000;
-          scaling_max_freq = 3800000;
-        };
-        charger = {
-          platform_profile = "performance";
-          governor = "performance";
-          energy_performance_preference = "performance";
-          turbo = "auto";
-          scaling_min_freq = 400000;
-          scaling_max_freq = 3800000;
-        };
-      };
-    };
-
-    blueman.enable = true;
-
-    supergfxd = {
-      enable = true;
-      settings = {
-        mode = "Integrated";
-        vfio_enable = false;
-        vfio_save = false;
-        always_reboot = false;
-        no_logind = false;
-        logout_timeout_s = 180;
-        hotplug_type = "None";
-      };
-    };
 
     gvfs.enable = true;
     tumbler.enable = true;
