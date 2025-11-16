@@ -19,9 +19,11 @@
     ../../modules/nixos/networking/ssh.nix
   ];
 
-  sops.secrets.tux-password = {
-    sopsFile = ./secrets.yaml;
-    neededForUsers = true;
+  opnix.secrets.tux-password = {
+    opPath = "op://Infrastructure/NixOS/tux-password";
+    owner = "root";
+    group = "root";
+    mode = "0400";
   };
 
   time.timeZone = "Asia/Kolkata";

@@ -1,10 +1,37 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
+  opnix.secrets = {
+    "cs2_secrets/SRCDS_TOKEN" = lib.mkDefault {
+      opPath = "op://Game Servers/cs2/SRCDS_TOKEN";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+
+    "cs2_secrets/CS2_RCONPW" = lib.mkDefault {
+      opPath = "op://Game Servers/cs2/CS2_RCONPW";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+
+    "cs2_secrets/CS2_PW" = lib.mkDefault {
+      opPath = "op://Game Servers/cs2/CS2_PW";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+  };
+
   virtualisation.oci-containers.containers.cs2-server = {
     image = "joedwards32/cs2";
     environmentFiles = [
-      config.sops.secrets."cs2_secrets/SRCDS_TOKEN".path
-      config.sops.secrets."cs2_secrets/CS2_RCONPW".path
-      config.sops.secrets."cs2_secrets/CS2_PW".path
+      config.opnix.secrets."cs2_secrets/SRCDS_TOKEN".path
+      config.opnix.secrets."cs2_secrets/CS2_RCONPW".path
+      config.opnix.secrets."cs2_secrets/CS2_PW".path
     ];
 
     environment = {

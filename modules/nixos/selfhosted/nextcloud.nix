@@ -5,6 +5,13 @@
   username,
   ...
 }: {
+  opnix.secrets.nextcloud_password = lib.mkDefault {
+    opPath = "op://Selfhosted/nextcloud/admin_password";
+    owner = "nextcloud";
+    group = "nextcloud";
+    mode = "0400";
+  };
+
   services = {
     nginx = {
       enable = lib.mkForce true;
@@ -34,7 +41,7 @@
       config = {
         dbtype = "sqlite";
         adminuser = "${username}";
-        adminpassFile = config.sops.secrets.nextcloud_password.path;
+        adminpassFile = config.opnix.secrets.nextcloud_password.path;
       };
 
       settings = {

@@ -4,11 +4,18 @@
   config,
   ...
 }: {
+  opnix.secrets.searx_secret_key = lib.mkDefault {
+    opPath = "op://Selfhosted/searx/secret_key";
+    owner = "searx";
+    group = "searx";
+    mode = "0400";
+  };
+
   services = {
     searx = {
       enable = true;
       package = pkgs.searxng;
-      environmentFile = config.sops.secrets.searx_secret_key.path;
+      environmentFile = config.opnix.secrets.searx_secret_key.path;
       settings = {
         general = {
           instance_name = "SearXNG";

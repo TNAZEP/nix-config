@@ -3,10 +3,17 @@
   config,
   ...
 }: {
+  opnix.secrets.wakapi_salt = lib.mkDefault {
+    opPath = "op://Selfhosted/wakapi/password_salt";
+    owner = "wakapi";
+    group = "wakapi";
+    mode = "0400";
+  };
+
   services = {
     wakapi = {
       enable = true;
-      passwordSaltFile = config.sops.secrets.wakapi_salt.path;
+      passwordSaltFile = config.opnix.secrets.wakapi_salt.path;
       database.createLocally = true;
       settings = {
         app.avatar_url_template = "https://www.gravatar.com/avatar/{email_hash}.png";

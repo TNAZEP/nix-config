@@ -139,6 +139,25 @@ reboot
 
 Your NixOS system should now boot into a beautiful DE.
 
+## Secrets via 1Password (opnix)
+
+All secrets are now pulled from 1Password through the custom opnix module (see `modules/base/opnix.nix`). To get everything working:
+
+1. Create 1Password items for every `opnix.secrets` entry (check `hosts/common/default.nix`, the host-specific `default.nix` files, and any self-hosted modules you enable) and note their `op://Vault/Item/Field` paths.
+2. Update the `opPath` values in those files to match the real vault/item/field names in your 1Password account.
+3. Install and sign in to the 1Password CLI as `root` so the non-interactive sync can read the items:
+   ```bash
+   sudo -i
+   op account add --address <your-team>.1password.com --email <you@example.com> --signin
+   op signin
+   ```
+   If you prefer a service account, export `OP_SERVICE_ACCOUNT_TOKEN` before running the sync service.
+4. (Optional) Trigger an immediate sync after updating paths or signing in:
+   ```bash
+   sudo systemctl start opnix-sync
+   ```
+   By default secrets land in `/run/opnix/<name>` with the owner/group and mode configured per secret.
+
 ## Components
 
 |               | Wayland  | Xorg             |

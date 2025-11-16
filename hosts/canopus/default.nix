@@ -25,20 +25,26 @@
   tux.services.openssh.enable = true;
   nixpkgs.config.cudaSupport = true;
 
-  sops.secrets = {
+  opnix.secrets = {
     hyperbolic_api_key = {
-      sopsFile = ./secrets.yaml;
+      opPath = "op://AI Keys/hyperbolic/api_key";
       owner = "${username}";
+      group = "${username}";
+      mode = "0400";
     };
 
     gemini_api_key = {
-      sopsFile = ./secrets.yaml;
+      opPath = "op://AI Keys/gemini/api_key";
       owner = "${username}";
+      group = "${username}";
+      mode = "0400";
     };
 
     open_router_api_key = {
-      sopsFile = ./secrets.yaml;
+      opPath = "op://AI Keys/open-router/token";
       owner = "${username}";
+      group = "${username}";
+      mode = "0400";
     };
   };
 

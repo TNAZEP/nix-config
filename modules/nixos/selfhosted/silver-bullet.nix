@@ -3,11 +3,18 @@
   config,
   ...
 }: {
+  opnix.secrets.silver_bullet = lib.mkDefault {
+    opPath = "op://Selfhosted/silver-bullet/env";
+    owner = "silverbullet";
+    group = "silverbullet";
+    mode = "0400";
+  };
+
   services = {
     silverbullet = {
       enable = true;
       listenPort = 9876;
-      envFile = config.sops.secrets.silver_bullet.path;
+      envFile = config.opnix.secrets.silver_bullet.path;
     };
 
     nginx = {

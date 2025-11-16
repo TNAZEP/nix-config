@@ -4,7 +4,7 @@
     ./nixpkgs.nix
     ./nh.nix
     ./overlays.nix
-    ./sops.nix
+    ./opnix.nix
     ./substituters.nix
     ./user.nix
   ];

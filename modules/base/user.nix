@@ -9,7 +9,7 @@
     mutableUsers = false;
     defaultUserShell = pkgs.zsh;
     users.${username} = {
-      hashedPasswordFile = config.sops.secrets.tux-password.path;
+      hashedPasswordFile = config.opnix.secrets.tux-password.path;
       isNormalUser = true;
       extraGroups = ["networkmanager" "wheel" "storage"];
       openssh.authorizedKeys.keys = [

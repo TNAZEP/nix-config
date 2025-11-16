@@ -3,6 +3,13 @@
   lib,
   ...
 }: {
+  opnix.secrets.plausible_key = lib.mkDefault {
+    opPath = "op://Selfhosted/plausible/secret_key_base";
+    owner = "plausible";
+    group = "plausible";
+    mode = "0400";
+  };
+
   services = {
     plausible = {
       enable = true;
@@ -11,7 +18,7 @@
         baseUrl = "https://plausible.tux.rs";
         port = 2100;
         disableRegistration = true;
-        secretKeybaseFile = config.sops.secrets.plausible_key.path;
+        secretKeybaseFile = config.opnix.secrets.plausible_key.path;
       };
 
       database.postgres = {
