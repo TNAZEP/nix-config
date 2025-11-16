@@ -86,6 +86,7 @@
     distrobox
     bluetui
     impala
+    gh
   ];
 
   home.persistence."/persist/home/${username}" = {
@@ -118,6 +119,7 @@
       ".config/kdeconnect"
       ".config/1Password"
       ".config/VSCodium"
+      ".config/zed"
       ".local/share/1Password"
       ".local/share/nvim"
       ".local/share/opencode"
@@ -126,6 +128,7 @@
       ".local/share/Smart\ Code\ ltd"
       ".local/share/GalaxyBudsClient"
       ".local/share/TelegramDesktop"
+      ".local/share/zed"
       ".local/state/lazygit"
     ];
     files = [
