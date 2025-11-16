@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/home/desktop/awesome
     ../../modules/home/desktop/hyprland
@@ -17,7 +18,6 @@
     ../../modules/home/vs-code
     ../../modules/home/zed
     ../../modules/home/mopidy
-    ../../modules/home/thunderbird
     ../../modules/home/easyeffects
     ../../modules/home/discord
     ../../modules/home/kdeconnect
@@ -54,7 +54,7 @@
 
   services.flameshot = {
     enable = true;
-    package = pkgs.flameshot.override {enableWlrSupport = true;};
+    package = pkgs.flameshot.override { enableWlrSupport = true; };
     settings = {
       General = {
         useGrimAdapter = true;

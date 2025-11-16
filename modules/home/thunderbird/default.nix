@@ -1,6 +1,7 @@
-{username, ...}: {
+{ username, ... }:
+{
   programs.thunderbird = {
-    enable = true;
+    enable = false;
 
     profiles."${username}" = {
       isDefault = true;

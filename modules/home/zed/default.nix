@@ -1,7 +1,12 @@
 {
   programs.zed-editor = {
     enable = true;
-    extensions = ["lua" "nix" "C#" "solidity"];
+    extensions = [
+      "lua"
+      "nix"
+      "C#"
+      "solidity"
+    ];
     userKeymaps = [
       {
         context = "Workspace";
@@ -18,7 +23,7 @@
         light = "Ayu Light";
         dark = "Ayu Dark";
       };
-      vim_mode = true;
+      vim_mode = false;
       telemetry = {
         diagnostics = false;
         metrics = false;
