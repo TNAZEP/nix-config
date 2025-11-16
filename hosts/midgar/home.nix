@@ -23,6 +23,7 @@
     ../../modules/home/kdeconnect
     ../../modules/home/obs-studio
     ../../modules/home/spotify
+    ../../modules/home/_1password
   ];
 
   home.pointerCursor = {
