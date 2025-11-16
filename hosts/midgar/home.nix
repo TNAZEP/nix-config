@@ -72,8 +72,6 @@
   };
 
   home.packages = with pkgs; [
-    telegram-desktop
-    anydesk
     stable.rustdesk-flutter
     rawtherapee
     stable.beekeeper-studio
@@ -82,7 +80,6 @@
     # @TODO Enable when qt5 webengine patched
     # https://github.com/NixOS/nixpkgs/blob/b599843bad24621dcaa5ab60dac98f9b0eb1cabe/pkgs/development/libraries/qt-5/modules/qtwebengine.nix#L466
     # stremio
-    galaxy-buds-client
     copyq
     vlc
     tor-browser

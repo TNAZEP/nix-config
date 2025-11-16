@@ -32,7 +32,7 @@
         # Apps
         terminal = "wezterm";
         floating_terminal = "wezterm start --class wezterm-floating";
-        editor = "wezterm -e nvim";
+        editor = "codium";
         browser = "firefox";
         spotify = "wezterm start --class wezterm-floating -e spotify_player";
         filemanager = "wezterm start --class wezterm-floating -e superfile";
@@ -88,7 +88,7 @@
         decoration = {
           rounding = rounding;
           active_opacity = 0.95;
-          inactive_opacity = 0.95;
+          inactive_opacity = 0.85;
           fullscreen_opacity = 1.0;
 
           blur = {

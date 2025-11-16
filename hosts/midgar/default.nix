@@ -246,8 +246,8 @@
 
     syncthing = {
       enable = true;
-      user = "tux";
-      dataDir = "/home/tux/";
+      user = "tnazep";
+      dataDir = "/home/tnazep/";
       openDefaultPorts = true;
     };
 
