@@ -22,12 +22,6 @@
       modules = [./hosts/${host}];
     };
 
-    mkDroidConfig = host: {
-      pkgs = import nixpkgs {system = "aarch64-linux";};
-      extraSpecialArgs = {inherit inputs outputs username email;};
-      modules = [./hosts/${host}];
-    };
-
     mkNixOSNode = hostname: {
       inherit hostname;
       profiles.system = {
@@ -36,21 +30,6 @@
       };
     };
 
-    activateNixOnDroid = configuration:
-      deploy-rs.lib.aarch64-linux.activate.custom
-      configuration.activationPackage
-      "${configuration.activationPackage}/activate";
-
-    mkDroidNode = hostname: {
-      inherit hostname;
-      profiles.system = {
-        sshUser = "nix-on-droid";
-        user = "nix-on-droid";
-        magicRollback = true;
-        sshOpts = ["-p" "8033"];
-        path = activateNixOnDroid self.nixOnDroidConfigurations.${hostname};
-      };
-    };
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -62,36 +41,13 @@
     # 'nixos-rebuild switch --flake .#your-hostname'
     nixosConfigurations = {
       midgar = nixosSystem (mkNixOSConfig "midgar");
-      arcturus = nixosSystem (mkNixOSConfig "arcturus");
       canopus = nixosSystem (mkNixOSConfig "canopus");
-      alpha = nixosSystem (mkNixOSConfig "alpha");
-      sirius = nixosSystem (mkNixOSConfig "sirius");
-      vega = nixosSystem (mkNixOSConfig "vega");
-      node = nixosSystem (mkNixOSConfig "node");
-      vps = nixosSystem (mkNixOSConfig "vps");
-      isoImage = nixosSystem (mkNixOSConfig "isoImage");
-      homelab = nixosSystem (mkNixOSConfig "homelab");
-    };
-
-    # NixOnDroid configuration entrypoint
-    # 'nix-on-droid switch --flake .#your-hostname'
-    nixOnDroidConfigurations = {
-      capella = nixOnDroidConfiguration (mkDroidConfig "capella");
-      rigel = nixOnDroidConfiguration (mkDroidConfig "rigel");
     };
 
     deploy = {
       nodes = {
         midgar = mkNixOSNode "midgar";
-        arcturus = mkNixOSNode "arcturus";
         canopus = mkNixOSNode "canopus";
-        alpha = mkNixOSNode "alpha";
-        sirius = mkNixOSNode "sirius";
-        vega = mkNixOSNode "vega";
-        node = mkNixOSNode "node";
-        homelab = mkNixOSNode "homelab";
-        capella = mkDroidNode "capella";
-        rigel = mkDroidNode "rigel";
       };
     };
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;

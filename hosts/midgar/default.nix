@@ -19,7 +19,7 @@
     ../../modules/nixos/desktop/awesome
     ../../modules/nixos/desktop/hyprland
     ../../modules/nixos/virtualisation
-    ../../modules/nixos/steam.nix
+    ../../modules/nixos/gaming.nix
   ];
 
   nixpkgs.overlays = lib.mkAfter [
