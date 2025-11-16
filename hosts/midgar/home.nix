@@ -104,6 +104,7 @@
       ".wakatime"
       ".rustup"
       ".cargo"
+      ".steam"
       ".cache/spotify-player"
       ".cache/1password"
       ".config/BraveSoftware"
