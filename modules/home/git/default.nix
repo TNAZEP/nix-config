@@ -16,7 +16,7 @@
         email = "${email}";
       };
       init.defaultBranch = "main";
-      commit.gpgSign = true;
+      commit.gpgSign = false;
       gpg.format = "ssh";
     };
   };
