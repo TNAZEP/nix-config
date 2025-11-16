@@ -63,6 +63,15 @@
     };
   };
 
+  {
+    programs._1password.enable = true;
+
+    programs._1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "tnazep" ];
+    };
+  }
+
   home.packages = with pkgs; [
     telegram-desktop
     anydesk
