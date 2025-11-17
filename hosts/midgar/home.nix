@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  config,
   ...
 }:
 {
@@ -89,6 +90,11 @@
     gh
   ];
 
+  home.file.".local/share/Steam".source =
+    config.lib.file.mkOutOfStoreSymlink "/persist/steam-home/Steam";
+
+  home.file.".steam".source = config.lib.file.mkOutOfStoreSymlink "/persist/steam-home/dot-steam";
+
   home.persistence."/persist/home/${username}" = {
     directories = [
       "Downloads"
@@ -105,7 +111,6 @@
       ".wakatime"
       ".rustup"
       ".cargo"
-      ".steam"
       ".cache/spotify-player"
       ".cache/1password"
       ".config/BraveSoftware"
@@ -120,6 +125,7 @@
       ".config/1Password"
       ".config/VSCodium"
       ".config/zed"
+      ".config/gh"
       ".local/share/1Password"
       ".local/share/nvim"
       ".local/share/opencode"
@@ -131,9 +137,11 @@
       ".local/share/zed"
       ".local/state/lazygit"
     ];
+
     files = [
       ".wakatime.cfg"
       ".config/aichat/.env"
+
     ];
     allowOther = true;
   };

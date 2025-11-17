@@ -32,7 +32,7 @@
         # Apps
         terminal = "wezterm";
         floating_terminal = "wezterm start --class wezterm-floating";
-        editor = "codium";
+        editor = "zeditor";
         browser = "firefox";
         spotify = "wezterm start --class wezterm-floating -e spotify_player";
         filemanager = "wezterm start --class wezterm-floating -e superfile";
