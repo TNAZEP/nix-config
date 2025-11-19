@@ -136,6 +136,7 @@
       ".local/share/TelegramDesktop"
       ".local/share/zed"
       ".local/state/lazygit"
+      ".local/share/faugus-launcher/"
     ];
 
     files = [
